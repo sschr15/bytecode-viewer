@@ -4,6 +4,10 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import java.io.File;
 import java.io.IOException;
+import java.lang.invoke.MethodHandle;
+import java.lang.invoke.MethodHandles;
+import java.lang.invoke.MethodType;
+import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.LinkedHashMap;
@@ -13,6 +17,7 @@ import javax.swing.SwingUtilities;
 import me.konloch.kontainer.io.DiskReader;
 import org.apache.commons.io.FileUtils;
 import org.objectweb.asm.tree.ClassNode;
+import sun.misc.Unsafe;
 import the.bytecode.club.bytecodeviewer.api.BCV;
 import the.bytecode.club.bytecodeviewer.api.ExceptionUI;
 import the.bytecode.club.bytecodeviewer.bootloader.Boot;
@@ -178,7 +183,25 @@ public class BytecodeViewer
 
         // Set the security manager
         try {
-            System.setSecurityManager(sm);
+            if (Double.parseDouble(System.getProperty("java.specification.version")) >= 17.0) {
+                // Java 18+ throws an UnsupportedOperationException if a security manager is attempted to be set
+                // Java 17 doesn't, but it makes an annoying log message
+                // so we must bypass by using questionable reflection
+                Field unsafe = Unsafe.class.getDeclaredField("theUnsafe");
+                unsafe.setAccessible(true);
+                Unsafe theUnsafe = (Unsafe) unsafe.get(null);
+
+                Field lookup = MethodHandles.Lookup.class.getDeclaredField("IMPL_LOOKUP");
+                Object o = theUnsafe.getObject(MethodHandles.Lookup.class, theUnsafe.staticFieldOffset(lookup));
+                MethodHandles.Lookup trusted = (MethodHandles.Lookup) o;
+
+                MethodHandle impl = trusted.findStatic(System.class, "implSetSecurityManager", MethodType.methodType(void.class, SecurityManager.class));
+                impl.invoke(sm);
+
+                System.out.println("Forcibly set the security manager");
+            } else {
+                System.setSecurityManager(sm);
+            }
         } catch (Throwable t) {
             System.err.println("Cannot set security manager! Are you on Java 18+ and have not enabled support for it?");
             System.err.println("Because of this, you may be susceptible to some exploits!");
