@@ -41,7 +41,6 @@ import the.bytecode.club.bytecodeviewer.util.ClassFileUtils;
 import the.bytecode.club.bytecodeviewer.util.LazyNameUtil;
 import the.bytecode.club.bytecodeviewer.util.MiscUtils;
 import the.bytecode.club.bytecodeviewer.util.PingBack;
-import the.bytecode.club.bytecodeviewer.util.SecurityMan;
 
 import static javax.swing.JOptionPane.QUESTION_MESSAGE;
 import static the.bytecode.club.bytecodeviewer.Constants.DEV_MODE;
@@ -149,9 +148,6 @@ public class BytecodeViewer
     //All of the created processes (Decompilers/etc)
     public static List<Process> createdProcesses = new ArrayList<>();
     
-    //Security Manager for dynamic analysis debugging
-    public static SecurityMan sm = new SecurityMan();
-    
     //Refactorer
     public static Refactorer refactorer = new Refactorer();
     
@@ -180,33 +176,6 @@ public class BytecodeViewer
         
         System.out.println(" - Created by @Konloch");
         System.out.println("https://bytecodeviewer.com - https://the.bytecode.club");
-
-        // Set the security manager
-        try {
-            if (Double.parseDouble(System.getProperty("java.specification.version")) >= 17.0) {
-                // Java 18+ throws an UnsupportedOperationException if a security manager is attempted to be set
-                // Java 17 doesn't, but it makes an annoying log message
-                // so we must bypass by using questionable reflection
-                Field unsafe = Unsafe.class.getDeclaredField("theUnsafe");
-                unsafe.setAccessible(true);
-                Unsafe theUnsafe = (Unsafe) unsafe.get(null);
-
-                Field lookup = MethodHandles.Lookup.class.getDeclaredField("IMPL_LOOKUP");
-                Object o = theUnsafe.getObject(MethodHandles.Lookup.class, theUnsafe.staticFieldOffset(lookup));
-                MethodHandles.Lookup trusted = (MethodHandles.Lookup) o;
-
-                MethodHandle impl = trusted.findStatic(System.class, "implSetSecurityManager", MethodType.methodType(void.class, SecurityManager.class));
-                impl.invoke(sm);
-
-                System.out.println("Forcibly set the security manager");
-            } else {
-                System.setSecurityManager(sm);
-            }
-        } catch (Throwable t) {
-            System.err.println("Cannot set security manager! Are you on Java 18+ and have not enabled support for it?");
-            System.err.println("Because of this, you may be susceptible to some exploits!");
-            System.err.println("Either deal with it or allow it using the -Djava.security.manager=allow parameter.");
-        }
 
         try
         {

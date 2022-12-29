@@ -80,9 +80,6 @@ public class JavapDisassembler extends InternalDecompiler
             //pipe sys out
             sysOutBuffer = new JFrameConsolePrintStream("", false);
         
-            //silence security manager debugging
-            BytecodeViewer.sm.silenceExec(true);
-        
             //invoke Javap
             main.invoke(null, (Object) new String[]{
                     "-p", //Shows all classes and members
@@ -101,7 +98,6 @@ public class JavapDisassembler extends InternalDecompiler
         }
         finally
         {
-            BytecodeViewer.sm.silenceExec(false);
             tempClass.delete();
         }
     

@@ -87,7 +87,7 @@
   "FERNFLOWER_SETTINGS": "Параметры цветка папоротника",
   "PROCYON": "Procyon",
   "CFR": "CFR",
-  "FERNFLOWER": "FernFlower",
+  "FERNFLOWER": "Quiltflower",
   "KRAKATAU": "Krakatau",
   "JDGUI": "JD-GUI",
   "JADX": "JADX",
@@ -121,7 +121,7 @@
 
   "PROCYON_DECOMPILER": "Декомпилятор Procyon",
   "CFR_DECOMPILER": "Декомпилятор CFR",
-  "FERNFLOWER_DECOMPILER": "Декомпилятор FernFlower",
+  "FERNFLOWER_DECOMPILER": "Декомпилятор Quiltflower",
   "JADX_DECOMPILER": "Декомпилятор JADX",
   "JD_DECOMPILER": "Декомпилятор JD-GUI",
   "BYTECODE_DISASSEMBLER": "Дизассемблер байт-кода",

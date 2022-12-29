@@ -84,7 +84,7 @@
   "JAVA": "Jawa",
   "PROCYON_SETTINGS": "Procyon Settings",
   "CFR_SETTINGS": "CFR Settings",
-  "FERNFLOWER_SETTINGS": "FernFlower Settings",
+  "FERNFLOWER_SETTINGS": "Quiltflower Settings",
   "PROCYON": "Procyon",
   "CFR": "CFR",
   "FERNFLOWER": "KembangBunga",
@@ -121,7 +121,7 @@
 
   "PROCYON_DECOMPILER": "Procyon Decompiler",
   "CFR_DECOMPILER": "CFR Decompiler",
-  "FERNFLOWER_DECOMPILER": "Decompiler FernFlower",
+  "FERNFLOWER_DECOMPILER": "Decompiler Quiltflower",
   "JADX_DECOMPILER": "JADX Decompiler",
   "JD_DECOMPILER": "JD-GUI Decompiler",
   "BYTECODE_DISASSEMBLER": "Bytecode Disassembler",

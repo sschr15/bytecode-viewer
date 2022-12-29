@@ -32,7 +32,7 @@ public enum Decompiler
     NONE("None", "", null),
     PROCYON_DECOMPILER("Procyon Decompiler", "proycon", new ProcyonDecompiler()),
     CFR_DECOMPILER("CFR Decompiler", "cfr", new CFRDecompiler()),
-    FERNFLOWER_DECOMPILER("FernFlower Decompiler", "fernflower", new FernFlowerDecompiler()),
+    FERNFLOWER_DECOMPILER("Quiltflower Decompiler", "quiltflower", new FernFlowerDecompiler()),
     BYTECODE_DISASSEMBLER("Bytecode Disassembler", "bcvbd", new BytecodeDisassembler()),
     HEXCODE_VIEWER("Hexcode Viewer", "bcvhex", null),
     SMALI_DISASSEMBLER("Smali Disassembler", "smali", new SmaliDisassembler()),
@@ -43,6 +43,7 @@ public enum Decompiler
     ASM_TEXTIFY_DISASSEMBLER("ASM Disassembler", "asm", new ASMTextifierDisassembler()),
     ASMIFIER_DECOMPILER("ASMifier Generator", "asmifier", new ASMifierGenerator()),
     JAVAP_DISASSEMBLER("Javap Disassembler", "javap", new JavapDisassembler()),
+    JASM_DISASSEMBLER("Jasm Disassembler", "jasm", new JasmDisassembler()),
     ;
     
     private final String decompilerName;

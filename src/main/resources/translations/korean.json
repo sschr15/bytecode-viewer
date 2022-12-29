@@ -84,7 +84,7 @@
   "JAVA": "자바",
   "PROCYON_SETTINGS": "Procyon Settings",
   "CFR_SETTINGS": "CFR Settings",
-  "FERNFLOWER_SETTINGS": "FernFlower Settings",
+  "FERNFLOWER_SETTINGS": "Quiltflower Settings",
   "PROCYON": "프로키온",
   "CFR": "CFR",
   "FERNFLOWER": "고사리꽃",
@@ -121,7 +121,7 @@
 
   "PROCYON_DECOMPILER": "프로키온 디컴파일러",
   "CFR_DECOMPILER": "CFR 디컴파일러",
-  "FERNFLOWER_DECOMPILER": "FernFlower 디컴파일러",
+  "FERNFLOWER_DECOMPILER": "Quiltflower 디컴파일러",
   "JADX_DECOMPILER": "JADX 디컴파일러",
   "JD_DECOMPILER": "JD-GUI 디컴파일러",
   "BYTECODE_DISASSEMBLER": "바이트코드 디스어셈블러",

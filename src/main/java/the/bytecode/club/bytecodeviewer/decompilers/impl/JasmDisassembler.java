@@ -1,4 +1,12 @@
-package the.bytecode.club.bytecodeviewer.compilers;
+package the.bytecode.club.bytecodeviewer.decompilers.impl;
+
+import org.objectweb.asm.tree.ClassNode;
+import the.bytecode.club.bytecodeviewer.decompilers.InternalDecompiler;
+import the.bytecode.club.bytecodeviewer.decompilers.bytecode.ClassNodeDecompiler;
+import the.bytecode.club.bytecodeviewer.decompilers.bytecode.PrefixedStringBuilder;
+
+import java.io.ByteArrayInputStream;
+import java.util.ArrayList;
 
 /***************************************************************************
  * Bytecode Viewer (BCV) - Java & Android Reverse Engineering Suite        *
@@ -18,30 +26,19 @@ package the.bytecode.club.bytecodeviewer.compilers;
  *   along with this program.  If not, see <http://www.gnu.org/licenses/>. *
  ***************************************************************************/
 
-import the.bytecode.club.bytecodeviewer.compilers.impl.JasmAssembler;
-import the.bytecode.club.bytecodeviewer.compilers.impl.JavaCompiler;
-import the.bytecode.club.bytecodeviewer.compilers.impl.KrakatauAssembler;
-import the.bytecode.club.bytecodeviewer.compilers.impl.SmaliAssembler;
-
 /**
- * A collection of all of the supported compilers/assemblers inside of BCV
- *
  * @author Konloch
+ * @since 7/3/2021
  */
-public enum Compiler
+public class JasmDisassembler extends InternalDecompiler
 {
-    KRAKATAU_ASSEMBLER(new KrakatauAssembler()),
-    SMALI_ASSEMBLER(new SmaliAssembler()),
-    JAVA_COMPILER(new JavaCompiler()),
-    JASM_ASSEMBLER(new JasmAssembler()),
-    ;
-    
-    private final InternalCompiler compiler;
-    
-    Compiler(InternalCompiler compiler) {this.compiler = compiler;}
-    
-    public InternalCompiler getCompiler()
-    {
-        return compiler;
-    }
+	@Override
+	public String decompileClassNode(ClassNode cn, byte[] b) {
+		var instance = new com.roscopeco.jasm.JasmDisassembler(cn.name, false, () -> new ByteArrayInputStream(b));
+		return instance.disassemble();
+	}
+	
+	@Override
+	public void decompileToZip(String sourceJar, String zipName) {
+	}
 }

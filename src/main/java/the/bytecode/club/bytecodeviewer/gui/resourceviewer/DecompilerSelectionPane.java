@@ -53,18 +53,19 @@ public class DecompilerSelectionPane
 	private final DecompilerViewComponent CFR = new DecompilerViewComponent("CFR", JAVA, Decompiler.CFR_DECOMPILER);
 	private final DecompilerViewComponent JADX = new DecompilerViewComponent("JADX", JAVA, Decompiler.JADX_DECOMPILER);
 	private final DecompilerViewComponent JD = new DecompilerViewComponent("JD-GUI", JAVA, Decompiler.JD_DECOMPILER);
-	private final DecompilerViewComponent fern = new DecompilerViewComponent("FernFlower", JAVA, Decompiler.FERNFLOWER_DECOMPILER);
+	private final DecompilerViewComponent fern = new DecompilerViewComponent("Quiltflower", JAVA, Decompiler.FERNFLOWER_DECOMPILER);
 	private final DecompilerViewComponent krakatau = new DecompilerViewComponent( "Krakatau", JAVA_AND_BYTECODE, Decompiler.KRAKATAU_DECOMPILER, Decompiler.KRAKATAU_DISASSEMBLER);
 	private final DecompilerViewComponent smali = new DecompilerViewComponent("Smali", BYTECODE, Decompiler.SMALI_DISASSEMBLER);
 	private final DecompilerViewComponent bytecode = new DecompilerViewComponent("Bytecode", BYTECODE_NON_EDITABLE, Decompiler.BYTECODE_DISASSEMBLER);
 	private final DecompilerViewComponent asmTextify = new DecompilerViewComponent("ASM Textify", BYTECODE_NON_EDITABLE, Decompiler.ASM_TEXTIFY_DISASSEMBLER);
 	private final DecompilerViewComponent asmifier = new DecompilerViewComponent("ASMifier", JAVA_NON_EDITABLE, Decompiler.ASMIFIER_DECOMPILER);
 	private final DecompilerViewComponent javap = new DecompilerViewComponent("Javap", BYTECODE_NON_EDITABLE, Decompiler.JAVAP_DISASSEMBLER);
+	private final DecompilerViewComponent jasm = new DecompilerViewComponent("Jasm", BYTECODE, Decompiler.JASM_DISASSEMBLER);
 	
 	//TODO when adding new decompilers insert the DecompilerViewComponent object into here
 	// also in the group, then finally the build menu
 	public List<DecompilerViewComponent> components = new ArrayList<>(Arrays.asList(
-			procyon, CFR, JADX, JD, fern, krakatau, smali, bytecode, asmTextify, asmifier, javap));
+			procyon, CFR, JADX, JD, fern, krakatau, smali, bytecode, asmTextify, asmifier, javap, jasm));
 	
 	public DecompilerSelectionPane(int paneID)
 	{
@@ -156,6 +157,7 @@ public class DecompilerSelectionPane
 		menu.add(new JSeparator());
 		menu.add(bytecode.getMenu());
 		menu.add(javap.getMenu());
+		menu.add(jasm.getMenu());
 		menu.add(asmTextify.getMenu());
 		menu.add(asmifier.getMenu());
 		menu.add(new JSeparator());

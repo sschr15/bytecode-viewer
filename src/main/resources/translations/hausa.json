@@ -84,7 +84,7 @@
   "JAVA": "Java",
   "PROCYON_SETTINGS": "Saitunan Procyon",
   "CFR_SETTINGS": "Saitunan CFR",
-  "FERNFLOWER_SETTINGS": "Saitunan FernFlower",
+  "FERNFLOWER_SETTINGS": "Saitunan Quiltflower",
   "PROCYON": "Procyon",
   "CFR": "CFR",
   "FERNFLOWER": "MaidaM",
@@ -121,7 +121,7 @@
 
   "PROCYON_DECOMPILER": "Rarraba Procyon",
   "CFR_DECOMPILER": "CFR Rarrabawa",
-  "FERNFLOWER_DECOMPILER": "Rarraba FernFlower",
+  "FERNFLOWER_DECOMPILER": "Rarraba Quiltflower",
   "JADX_DECOMPILER": "JADX Rarrabawa",
   "JD_DECOMPILER": "Rarraba JD-GUI",
   "BYTECODE_DISASSEMBLER": "Bytecode Mai Rarrabawa",

@@ -121,7 +121,7 @@
 
   "PROCYON_DECOMPILER": "Dekompiler Procyon",
   "CFR_DECOMPILER": "Dekompiler CFR",
-  "FERNFLOWER_DECOMPILER": "Dekompiler FernFlower",
+  "FERNFLOWER_DECOMPILER": "Dekompiler Quiltflower",
   "JADX_DECOMPILER": "Dekompiler JADX",
   "JD_DECOMPILER": "Dekompiler JD-GUI",
   "BYTECODE_DISASSEMBLER": "Pembongkaran Bytecode",

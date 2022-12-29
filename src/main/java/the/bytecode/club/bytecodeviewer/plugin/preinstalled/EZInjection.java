@@ -267,9 +267,6 @@ public class EZInjection extends Plugin
 
         if (invokeMethod)
         {
-            //start print debugging
-            BytecodeViewer.sm.setPrinting(true);
-            
             // load all the classnodes into the classloader
             for (ClassNode cn : BytecodeViewer.getLoadedClasses())
                 BCV.getClassNodeLoader().addClass(cn);
@@ -312,9 +309,6 @@ public class EZInjection extends Plugin
                                 }
                                 finally
                                 {
-                                    //disable print debugging
-                                    BytecodeViewer.sm.setPrinting(false);
-                                    
                                     if(kit != null)
                                         kit.setVisible(false);
                                 }

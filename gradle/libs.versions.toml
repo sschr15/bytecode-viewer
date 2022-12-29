@@ -1,0 +1,107 @@
+[versions]
+# Main
+java = "1.8"
+bcv = "2.11.2"
+
+# Dependencies
+annotations = "23.1.0"
+antlr4 = "4.9.3"
+apktool = "2.7.0"
+asm = "9.4"
+bined = "0.2.0"
+# bytecode analysis is in libs
+cfr = "0.152"
+cloning = "1.9.12"
+commons_cli = "1.5.0"
+commons_codec = "1.15"
+commons_collections = "4.4"
+commons_compiler = "3.1.9"
+commons_compress = "1.22"
+commons_io = "2.11.0"
+commons_lang3 = "3.12.0"
+commons_text = "1.10.0"
+darklaf_core = "3.0.2"
+darklaf_extensions_rsta = "0.4.1"
+dex2jar = "v57"
+gson = "2.10"
+guava = "31.1-jre"
+imgscalr = "4.2"
+jadx = "1.4.5"
+jasm = "0.7.0"
+# jd-gui is in libs
+jgraphx = "3.4.1.3"
+#js = "21.2.0"
+objenesis = "3.3"
+paged_data = "0.2.0"
+procyon = "0.6.0"
+quiltflower = "1.10.0-SNAPSHOT"
+rsyntaxtextarea = "3.3.0"
+semver = "2.1.1"
+slf4j = "2.0.5"
+smali = "2.5.2"
+snakeyaml = "1.33"
+treelayout = "1.0.3"
+webp_imageio = "0.2.2"
+xpp3 = "1.1.4c"
+
+[libraries]
+annotations = { module = "org.jetbrains:annotations", version.ref = "annotations" }
+antlr4 = { module = "org.antlr:antlr4", version.ref = "antlr4" }
+apktool_cli = { module = "org.apktool:apktool-cli", version.ref = "apktool" }
+apktool_lib = { module = "org.apktool:apktool-lib", version.ref = "apktool" }
+asm_main = { module = "org.ow2.asm:asm", version.ref = "asm" }
+asm_analysis = { module = "org.ow2.asm:asm-analysis", version.ref = "asm" }
+asm_commons = { module = "org.ow2.asm:asm-commons", version.ref = "asm" }
+asm_tree = { module = "org.ow2.asm:asm-tree", version.ref = "asm" }
+asm_util = { module = "org.ow2.asm:asm-util", version.ref = "asm" }
+bined_core = { module = "org.exbin.bined:bined-core", version.ref = "bined" }
+bined_swing = { module = "org.exbin.bined:bined-swing", version.ref = "bined" }
+bined_highlight_swing = { module = "org.exbin.bined:bined-highlight-swing", version.ref = "bined" }
+cfr = { module = "org.benf:cfr", version.ref = "cfr" }
+cloning = { module = "uk.com.robust-it:cloning", version.ref = "cloning" }
+commons_cli = { module = "commons-cli:commons-cli", version.ref = "commons_cli" }
+commons_codec = { module = "commons-codec:commons-codec", version.ref = "commons_codec" }
+commons_collections = { module = "org.apache.commons:commons-collections4", version.ref = "commons_collections" }
+commons_compiler = { module = "org.codehaus.janino:commons-compiler", version.ref = "commons_compiler" }
+commons_compress = { module = "org.apache.commons:commons-compress", version.ref = "commons_compress" }
+commons_io = { module = "commons-io:commons-io", version.ref = "commons_io" }
+commons_lang3 = { module = "org.apache.commons:commons-lang3", version.ref = "commons_lang3" }
+commons_text = { module = "org.apache.commons:commons-text", version.ref = "commons_text" }
+darklaf_core = { module = "com.github.weisj:darklaf-core", version.ref = "darklaf_core" }
+darklaf_extensions_rsta = { module = "com.github.weisj:darklaf-extensions-rsyntaxarea", version.ref = "darklaf_extensions_rsta" }
+dex2jar = { module = "com.github.ThexXTURBOXx:dex2jar", version.ref = "dex2jar" }
+gson = { module = "com.google.code.gson:gson", version.ref = "gson" }
+guava = { module = "com.google.guava:guava", version.ref = "guava" }
+imgscalr = { module = "org.imgscalr:imgscalr-lib", version.ref = "imgscalr" }
+janino = { module = "org.codehaus.janino:janino", version.ref = "commons_compiler" }
+jadx_core = { module = "io.github.skylot:jadx-core", version.ref = "jadx" }
+jadx_java_convert = { module = "io.github.skylot:jadx-java-convert", version.ref = "jadx" }
+jadx_dex_input = { module = "io.github.skylot:jadx-dex-input", version.ref = "jadx" }
+jadx_smali_input = { module = "io.github.skylot:jadx-smali-input", version.ref = "jadx" }
+jasm = { module = "com.roscopeco.jasm:jasm", version.ref = "jasm" }
+jgraphx = { module = "org.tinyjee.jgraphx:jgraphx", version.ref = "jgraphx" }
+objenesis = { module = "org.objenesis:objenesis", version.ref = "objenesis" }
+paged_data = { module = "org.exbin.auxiliary:paged_data", version.ref = "paged_data" }
+procyon_core = { module = "org.bitbucket.mstrobel:procyon-core", version.ref = "procyon" }
+procyon_compilertools = { module = "org.bitbucket.mstrobel:procyon-compilertools", version.ref = "procyon" }
+procyon_expressions = { module = "org.bitbucket.mstrobel:procyon-expressions", version.ref = "procyon" }
+procyon_reflection = { module = "org.bitbucket.mstrobel:procyon-reflection", version.ref = "procyon" }
+quiltflower = { module = "org.quiltmc:quiltflower", version.ref = "quiltflower" }
+rsyntaxtextarea = { module = "com.fifesoft:rsyntaxtextarea", version.ref = "rsyntaxtextarea" }
+slf4j_api = { module = "org.slf4j:slf4j-api", version.ref = "slf4j" }
+semver = { module = "de.skuzzle:semantic-version", version.ref = "semver" }
+smali = { module = "org.smali:smali", version.ref = "smali" }
+baksmali = { module = "org.smali:baksmali", version.ref = "smali" }
+snakeyaml = { module = "org.yaml:snakeyaml", version.ref = "snakeyaml" }
+treelayout = { module = "org.abego.treelayout:org.abego.treelayout.core", version.ref = "treelayout" }
+webp_imageio = { module = "com.github.gotson:webp-imageio", version.ref = "webp_imageio" }
+xpp3 = { module = "xpp3:xpp3", version.ref = "xpp3" }
+
+[bundles]
+asm = [ "asm_main", "asm_analysis", "asm_commons", "asm_tree", "asm_util" ]
+bined = [ "bined_core", "bined_swing", "bined_highlight_swing" ]
+commons = [ "commons_cli", "commons_codec", "commons_collections", "commons_compress", "commons_io", "commons_lang3", "commons_text" ]
+darklaf = [ "darklaf_core", "darklaf_extensions_rsta" ]
+jadx = [ "jadx_core", "jadx_dex_input", "jadx_smali_input" ]
+procyon = [ "procyon_core", "procyon_compilertools", "procyon_expressions", "procyon_reflection" ]
+smali = [ "smali", "baksmali" ]
