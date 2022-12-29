@@ -366,10 +366,19 @@ public class BytecodeViewPanelUpdater implements Runnable
         bytecodeViewPanel.textArea.setCaretPosition(0);
         bytecodeViewPanel.textArea.setEditable(isPanelEditable);
         
-        if(isPanelEditable && decompiler == Decompiler.SMALI_DISASSEMBLER)
-            bytecodeViewPanel.compiler = Compiler.SMALI_ASSEMBLER;
-        else if(isPanelEditable && decompiler == Decompiler.KRAKATAU_DISASSEMBLER)
-            bytecodeViewPanel.compiler = Compiler.KRAKATAU_ASSEMBLER;
+        if (isPanelEditable) {
+            switch (decompiler) {
+                case SMALI_DISASSEMBLER:
+                    bytecodeViewPanel.compiler = Compiler.SMALI_ASSEMBLER;
+                    break;
+                case KRAKATAU_DISASSEMBLER:
+                    bytecodeViewPanel.compiler = Compiler.KRAKATAU_ASSEMBLER;
+                    break;
+                case JASM_DISASSEMBLER:
+                    bytecodeViewPanel.compiler = Compiler.JASM_ASSEMBLER;
+                    break;
+            }
+        }
         
         String editable = isPanelEditable ? " - " + EDITABLE : "";
         bytecodeViewPanel.textArea.getTitleHeader().setText(decompiler.getDecompilerName() + editable);
