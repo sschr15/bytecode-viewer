@@ -76,6 +76,17 @@ tasks {
         from(fileTree("dir" to "libs", "include" to listOf("*.zip")))
 
         duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+
+        manifest {
+            attributes(
+                "Main-Class" to "the.bytecode.club.bytecodeviewer.BytecodeViewer",
+                "Implementation-Title" to "Bytecode Viewer",
+                "Implementation-Version" to libs.versions.bcv.get(),
+                "Implementation-Vendor" to "The Bytecode Club",
+                "X-Compile-Source-JDK" to "11",
+                "X-Compile-Target-JDK" to "11",
+            )
+        }
     }
 
     withType<JavaCompile> {
