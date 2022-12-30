@@ -44,6 +44,7 @@ dependencies {
     implementation(libs.janino)
     implementation(libs.jasm)
     implementation(libs.jgraphx)
+    implementation(libs.js)
     implementation(libs.objenesis)
     implementation(libs.paged.data)
     implementation(libs.quiltflower)

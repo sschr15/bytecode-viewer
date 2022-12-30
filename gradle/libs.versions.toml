@@ -30,7 +30,7 @@ jadx = "1.4.5"
 jasm = "0.7.0"
 # jd-gui is in libs
 jgraphx = "3.4.1.3"
-#js = "21.2.0"
+js = "1.7.14"
 objenesis = "3.3"
 paged_data = "0.2.0"
 procyon = "0.6.0"
@@ -80,6 +80,7 @@ jadx_dex_input = { module = "io.github.skylot:jadx-dex-input", version.ref = "ja
 jadx_smali_input = { module = "io.github.skylot:jadx-smali-input", version.ref = "jadx" }
 jasm = { module = "com.roscopeco.jasm:jasm", version.ref = "jasm" }
 jgraphx = { module = "org.tinyjee.jgraphx:jgraphx", version.ref = "jgraphx" }
+js = { module = "org.mozilla:rhino", version.ref = "js" }
 objenesis = { module = "org.objenesis:objenesis", version.ref = "objenesis" }
 paged_data = { module = "org.exbin.auxiliary:paged_data", version.ref = "paged_data" }
 procyon_core = { module = "org.bitbucket.mstrobel:procyon-core", version.ref = "procyon" }

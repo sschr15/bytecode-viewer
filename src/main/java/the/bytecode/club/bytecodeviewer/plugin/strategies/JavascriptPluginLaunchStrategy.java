@@ -1,19 +1,15 @@
 package the.bytecode.club.bytecodeviewer.plugin.strategies;
 
-import java.io.File;
-import java.io.FileReader;
-import java.io.Reader;
-import java.util.List;
-import javax.script.Bindings;
-import javax.script.Invocable;
-import javax.script.ScriptContext;
-import javax.script.ScriptEngine;
-import javax.script.ScriptEngineManager;
-import javax.script.ScriptException;
+import org.mozilla.javascript.Context;
+import org.mozilla.javascript.Function;
+import org.mozilla.javascript.Scriptable;
 import org.objectweb.asm.tree.ClassNode;
-import the.bytecode.club.bytecodeviewer.BytecodeViewer;
 import the.bytecode.club.bytecodeviewer.api.Plugin;
 import the.bytecode.club.bytecodeviewer.plugin.PluginLaunchStrategy;
+
+import java.io.File;
+import java.nio.file.Files;
+import java.util.List;
 
 /***************************************************************************
  * Bytecode Viewer (BCV) - Java & Android Reverse Engineering Suite        *
@@ -40,54 +36,29 @@ import the.bytecode.club.bytecodeviewer.plugin.PluginLaunchStrategy;
  */
 public class JavascriptPluginLaunchStrategy implements PluginLaunchStrategy
 {
-    //attempt to use nashorn
-    public static final String firstPickEngine = "nashorn";
-    //fallback to graal.js
-    public static final String fallBackEngine = "graal.js";
-    
     @Override
     public Plugin run(File file) throws Throwable
     {
-        ScriptEngineManager manager = new ScriptEngineManager();
-        ScriptEngine engine = manager.getEngineByName(firstPickEngine);
-    
-        //nashorn compatability with graal
-        if (engine == null)
-        {
-            engine = manager.getEngineByName(fallBackEngine);
-            
-            if (engine == null)
-                throw new Exception("Cannot find Javascript script engine! Please contact Konloch.");
-            
-            Bindings bindings = engine.getBindings(ScriptContext.ENGINE_SCOPE);
-            bindings.put("polyglot.js.allowHostAccess", true);
-            bindings.put("polyglot.js.allowAllAccess", true);
-            bindings.put("polyglot.js.allowHostClassLookup", true);
+        return new JsPlugin(Files.readString(file.toPath()), file.getName());
+    }
+
+    public static class JsPlugin extends Plugin {
+        private final String script;
+        private final String name;
+
+        public JsPlugin(String script, String name) {
+            this.script = script;
+            this.name = name;
         }
 
-        Reader reader = new FileReader(file);
-        engine.eval(reader);
-    
-        ScriptEngine finalEngine = engine;
-        
-        return new Plugin()
-        {
-            @Override
-            public void execute(List<ClassNode> classNodeList)
-            {
-                try
-                {
-                    //add the active container as a global variable to the JS script
-                    finalEngine.put("activeContainer", activeContainer);
-                    
-                    //invoke the JS function
-                    ((Invocable) finalEngine).invokeFunction("execute", classNodeList);
-                }
-                catch (NoSuchMethodException | ScriptException e)
-                {
-                    BytecodeViewer.handleException(e);
-                }
+        @Override
+        public void execute(List<ClassNode> classNodeList) {
+            try (Context ctx = Context.enter()) {
+                Scriptable scope = ctx.initStandardObjects();
+                ctx.evaluateString(scope, script, name, 1, null);
+                Function function = (Function) scope.get("execute", scope);
+                function.call(ctx, scope, scope, new Object[]{classNodeList});
             }
-        };
+        }
     }
 }

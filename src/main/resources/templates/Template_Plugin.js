@@ -1,5 +1,3 @@
-var BCV = Java.type("the.bytecode.club.bytecodeviewer.api.BCV");
-var PluginConsole = Java.type("the.bytecode.club.bytecodeviewer.api.PluginConsole");
 var gui;
 
 /**
@@ -13,19 +11,19 @@ var gui;
  */
 function execute(classNodeList)
 {
-    //create & show the console
-	gui = new PluginConsole("Javascript Template");
+	//create & show the console
+	gui = new Packages.the.bytecode.club.bytecodeviewer.api.PluginConsole("Javascript Template");
 	gui.setVisible(true);
 
 	//print to the console
 	print("Class Nodes: " + classNodeList.size());
 
 	//iterate through each class node
-    for (index = 0; index < classNodeList.length; index++)
-        processClassNode(classNodeList[index]);
+	for (index = 0; index < classNodeList.length; index++)
+		processClassNode(classNodeList[index]);
 
-    //hide the console after 10 seconds
-	BCV.hideFrame(gui, 10000);
+	//hide the console after 10 seconds
+	Packages.the.bytecode.club.bytecodeviewer.api.BCV.hideFrame(gui, 10000);
 }
 
 /**
@@ -45,3 +43,4 @@ function print(text)
 {
 	gui.appendText(text);
 }
+
