@@ -25,7 +25,10 @@ public class QfContextSource implements IContextSource {
         if (cn.innerClasses != null) for (var inner : cn.innerClasses) {
             try {
                 Objects.requireNonNull(BCV.getClassNode(inner.name)); // check if class is discoverable
-                entries.add(Entry.parse(inner.name));
+                if (inner.name.startsWith(cn.name + "$")) {
+                    Entry entry = Entry.parse(inner.name);
+                    entries.add(entry);
+                } // else don't add it (it's probably something to do with lambdas)
             } catch (Exception ignored) {
             }
         }

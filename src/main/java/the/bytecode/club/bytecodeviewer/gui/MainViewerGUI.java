@@ -26,6 +26,8 @@ import the.bytecode.club.bytecodeviewer.BytecodeViewer;
 import the.bytecode.club.bytecodeviewer.Configuration;
 import the.bytecode.club.bytecodeviewer.Constants;
 import the.bytecode.club.bytecodeviewer.SettingsSerializer;
+import the.bytecode.club.bytecodeviewer.decompilers.Decompiler;
+import the.bytecode.club.bytecodeviewer.decompilers.impl.FernFlowerDecompiler;
 import the.bytecode.club.bytecodeviewer.gui.components.AboutWindow;
 import the.bytecode.club.bytecodeviewer.gui.components.FileChooser;
 import the.bytecode.club.bytecodeviewer.gui.components.MultipleChoiceDialog;
@@ -218,26 +220,7 @@ public class MainViewerGUI extends JFrame
     public final JMenu fernFlowerSettingsSecondaryMenu = new TranslatedJMenu("Quiltflower Settings", TranslatedComponents.FERNFLOWER_SETTINGS);
     public final JMenuItem fernFlowerSettings = new TranslatedJMenuItem("Quiltflower Settings", TranslatedComponents.FERNFLOWER_SETTINGS);
     public SettingsDialog fernFlowerSettingsDialog;
-    public TranslatedJCheckBoxMenuItem rbr = new TranslatedJCheckBoxMenuItem("Hide bridge methods", TranslatedComponents.HIDE_BRIDGE_METHODS);
-    public TranslatedJCheckBoxMenuItem rsy = new TranslatedJCheckBoxMenuItem("Hide synthetic class members", TranslatedComponents.HIDE_SYNTHETIC_CLASS_MEMBERS);
-    public TranslatedJCheckBoxMenuItem din = new TranslatedJCheckBoxMenuItem("Decompile inner classes", TranslatedComponents.DECOMPILE_INNER_CLASSES);
-    public TranslatedJCheckBoxMenuItem dc4 = new TranslatedJCheckBoxMenuItem("Collapse 1.4 class references", TranslatedComponents.COLLAPSE_14_CLASS_REFERENCES);
-    public TranslatedJCheckBoxMenuItem das = new TranslatedJCheckBoxMenuItem("Decompile assertions", TranslatedComponents.DECOMPILE_ASSERTIONS);
-    public TranslatedJCheckBoxMenuItem hes = new TranslatedJCheckBoxMenuItem("Hide empty super invocation", TranslatedComponents.HIDE_EMPTY_SUPER_INVOCATION);
-    public TranslatedJCheckBoxMenuItem hdc = new TranslatedJCheckBoxMenuItem("Hide empty default constructor", TranslatedComponents.HIDE_EMPTY_DEFAULT_CONSTRUCTOR);
-    public TranslatedJCheckBoxMenuItem dgs = new TranslatedJCheckBoxMenuItem("Decompile generic signatures", TranslatedComponents.DECOMPILE_GENERIC_SIGNATURES);
-    public TranslatedJCheckBoxMenuItem ner = new TranslatedJCheckBoxMenuItem("Assume return not throwing exceptions", TranslatedComponents.ASSUME_RETURN_NOT_THROWING_EXCEPTIONS);
-    public TranslatedJCheckBoxMenuItem den = new TranslatedJCheckBoxMenuItem("Decompile enumerations", TranslatedComponents.DECOMPILE_ENUMERATIONS);
-    public TranslatedJCheckBoxMenuItem rgn = new TranslatedJCheckBoxMenuItem("Remove getClass() invocation", TranslatedComponents.REMOVE_GETCLASS_INVOCATION);
-    public TranslatedJCheckBoxMenuItem bto = new TranslatedJCheckBoxMenuItem("Interpret int 1 as boolean true", TranslatedComponents.INTERPRET_INT_1_AS_BOOLEAN_TRUE);
-    public TranslatedJCheckBoxMenuItem nns = new TranslatedJCheckBoxMenuItem("Allow for not set synthetic attribute", TranslatedComponents.ALLOW_FOR_NOT_SET_SYNTHETIC_ATTRIBUTE);
-    public TranslatedJCheckBoxMenuItem uto = new TranslatedJCheckBoxMenuItem("Consider nameless types as java.lang.Object", TranslatedComponents.CONSIDER_NAMELESS_TYPES_AS_JAVALANGOBJECT);
-    public TranslatedJCheckBoxMenuItem udv = new TranslatedJCheckBoxMenuItem("Reconstruct variable names from debug info", TranslatedComponents.RECONSTRUCT_VARIABLE_NAMES_FROM_DEBUG_INFO);
-    public TranslatedJCheckBoxMenuItem rer = new TranslatedJCheckBoxMenuItem("Remove empty exception ranges", TranslatedComponents.REMOVE_EMPTY_EXCEPTION_RANGES);
-    public TranslatedJCheckBoxMenuItem fdi = new TranslatedJCheckBoxMenuItem("Deinline finally structures", TranslatedComponents.DEINLINE_FINALLY_STRUCTURES);
-    public TranslatedJCheckBoxMenuItem asc = new TranslatedJCheckBoxMenuItem("Allow only ASCII characters in strings", TranslatedComponents.ALLOW_ONLY_ASCII_CHARACTERS_IN_STRINGS);
-    public TranslatedJCheckBoxMenuItem ren = new TranslatedJCheckBoxMenuItem("Rename ambiguous classes and class elements", TranslatedComponents.RENAME_AMBIGUOUS_CLASSES_AND_CLASS_ELEMENTS);
-    
+
     //Procyon
     public final JMenu procyonSettingsSecondaryMenu = new TranslatedJMenu("Procyon Settings", TranslatedComponents.PROCYON_SETTINGS);
     public final JMenuItem procyonSettings = new TranslatedJMenuItem("Procyon Settings", TranslatedComponents.PROCYON_SETTINGS);
@@ -633,25 +616,7 @@ public class MainViewerGUI extends JFrame
         
         //FERNFLOWER SETTINGS
         settingsMainMenu.add(useNewSettingsDialog ? fernFlowerSettings : fernFlowerSettingsSecondaryMenu);
-        fernFlowerSettingsSecondaryMenu.add(ren);
-        fernFlowerSettingsSecondaryMenu.add(dc4);
-        fernFlowerSettingsSecondaryMenu.add(nns);
-        fernFlowerSettingsSecondaryMenu.add(ner);
-        fernFlowerSettingsSecondaryMenu.add(bto);
-        fernFlowerSettingsSecondaryMenu.add(rgn);
-        fernFlowerSettingsSecondaryMenu.add(rer);
-        fernFlowerSettingsSecondaryMenu.add(rbr);
-        fernFlowerSettingsSecondaryMenu.add(rsy);
-        fernFlowerSettingsSecondaryMenu.add(hes);
-        fernFlowerSettingsSecondaryMenu.add(hdc);
-        fernFlowerSettingsSecondaryMenu.add(din);
-        fernFlowerSettingsSecondaryMenu.add(das);
-        fernFlowerSettingsSecondaryMenu.add(dgs);
-        fernFlowerSettingsSecondaryMenu.add(den);
-        fernFlowerSettingsSecondaryMenu.add(uto);
-        fernFlowerSettingsSecondaryMenu.add(udv);
-        fernFlowerSettingsSecondaryMenu.add(fdi);
-        fernFlowerSettingsSecondaryMenu.add(asc);
+        ((FernFlowerDecompiler) Decompiler.FERNFLOWER_DECOMPILER.getDecompiler()).setupSettingsMenu(fernFlowerSettingsSecondaryMenu);
         fernFlowerSettingsDialog = new SettingsDialog(fernFlowerSettingsSecondaryMenu, new JPanel());
         fernFlowerSettings.addActionListener((e)-> fernFlowerSettingsDialog.showDialog());
         
@@ -814,28 +779,10 @@ public class MainViewerGUI extends JFrame
         recoveryTypehInts.setSelected(true);
         forceTurningIFs.setSelected(true);
         forLoopAGGCapture.setSelected(true);
-        
+
         // fernflower
-        rbr.setSelected(true);
-        rsy.setSelected(false);
-        din.setSelected(true);
-        das.setSelected(true);
-        dgs.setSelected(false);
-        den.setSelected(true);
-        uto.setSelected(true);
-        udv.setSelected(true);
-        fdi.setSelected(true);
-        asc.setSelected(false);
-        ren.setSelected(false);
-        dc4.setSelected(true);
-        nns.setSelected(true);
-        ner.setSelected(true);
-        bto.setSelected(true);
-        rgn.setSelected(true);
-        rer.setSelected(true);
-        hes.setSelected(true);
-        hdc.setSelected(true);
-        
+        ((FernFlowerDecompiler) Decompiler.FERNFLOWER_DECOMPILER.getDecompiler()).setDefaults();
+
         //CFIDE
         debugHelpers.setSelected(true);
         appendBracketsToLabels.setSelected(true);

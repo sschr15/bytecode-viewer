@@ -1,10 +1,13 @@
 package the.bytecode.club.bytecodeviewer;
 
 import java.io.File;
+import java.util.HashMap;
+import java.util.Map;
 import javax.swing.JFrame;
 import me.konloch.kontainer.io.DiskReader;
 import me.konloch.kontainer.io.DiskWriter;
 import the.bytecode.club.bytecodeviewer.decompilers.Decompiler;
+import the.bytecode.club.bytecodeviewer.decompilers.impl.FernFlowerDecompiler;
 import the.bytecode.club.bytecodeviewer.gui.theme.LAFTheme;
 import the.bytecode.club.bytecodeviewer.gui.theme.RSTATheme;
 import the.bytecode.club.bytecodeviewer.translation.Language;
@@ -45,30 +48,19 @@ public class SettingsSerializer
         Thread saveThread = new Thread(SettingsSerializer::saveSettings, "Save Settings");
         saveThread.start();
     }
+
+    private static void deprecated(int count) {
+        for (int i = 0; i < count; i++) {
+            save("deprecated");
+        }
+    }
     
     public static synchronized void saveSettings()
     {
         try
         {
             DiskWriter.replaceFile(settingsName, "BCV: " + VERSION, false);
-            save(BytecodeViewer.viewer.rbr.isSelected());
-            save(BytecodeViewer.viewer.rsy.isSelected());
-            save(BytecodeViewer.viewer.din.isSelected());
-            save(BytecodeViewer.viewer.dc4.isSelected());
-            save(BytecodeViewer.viewer.das.isSelected());
-            save(BytecodeViewer.viewer.hes.isSelected());
-            save(BytecodeViewer.viewer.hdc.isSelected());
-            save(BytecodeViewer.viewer.dgs.isSelected());
-            save(BytecodeViewer.viewer.ner.isSelected());
-            save(BytecodeViewer.viewer.den.isSelected());
-            save(BytecodeViewer.viewer.rgn.isSelected());
-            save(BytecodeViewer.viewer.bto.isSelected());
-            save(BytecodeViewer.viewer.nns.isSelected());
-            save(BytecodeViewer.viewer.uto.isSelected());
-            save(BytecodeViewer.viewer.udv.isSelected());
-            save(BytecodeViewer.viewer.rer.isSelected());
-            save(BytecodeViewer.viewer.fdi.isSelected());
-            save(BytecodeViewer.viewer.asc.isSelected());
+            deprecated(18);
             save(BytecodeViewer.viewer.decodeEnumSwitch.isSelected());
             save(BytecodeViewer.viewer.sugarEnums.isSelected());
             save(BytecodeViewer.viewer.decodeStringSwitch.isSelected());
@@ -129,39 +121,22 @@ public class SettingsSerializer
             save(BytecodeViewer.viewer.excludeNestedTypes.isSelected());
             save(BytecodeViewer.viewer.appendBracketsToLabels.isSelected());
             save(BytecodeViewer.viewer.debugHelpers.isSelected());
-            save("deprecated");
+            deprecated(1);
             save(BytecodeViewer.viewer.updateCheck.isSelected());
             save(BytecodeViewer.viewer.viewPane1.getSelectedDecompiler().ordinal());
             save(BytecodeViewer.viewer.viewPane2.getSelectedDecompiler().ordinal());
             save(BytecodeViewer.viewer.viewPane3.getSelectedDecompiler().ordinal());
             save(BytecodeViewer.viewer.refreshOnChange.isSelected());
             save(BytecodeViewer.viewer.isMaximized);
-            save("deprecated");
-            save("deprecated");
+            deprecated(2);
             save(Configuration.lastOpenDirectory);
             save(Configuration.python2);
             save(Configuration.rt);
-            save("deprecated");
-            save("deprecated");
-            save("deprecated");
-            save("deprecated");
-            save("deprecated");
-            save("deprecated");
-            save("deprecated");
-            save("deprecated");
-            save("deprecated");
-            save("deprecated");
-            save("deprecated");
-            save("deprecated");
-            save("deprecated");
-            save("deprecated");
-            save("deprecated");
+            deprecated(15);
             save(BytecodeViewer.viewer.decodeAPKResources.isSelected());
             save(Configuration.library);
             save(Configuration.pingback);
-            save("deprecated");
-            save("deprecated");
-            save("deprecated");
+            deprecated(3);
             save(BytecodeViewer.viewer.getFontSize());
             save(Configuration.deleteForeignLibraries);
     
@@ -180,8 +155,7 @@ public class SettingsSerializer
             save(BytecodeViewer.viewer.forcePureAsciiAsText.isSelected());
             save(BytecodeViewer.viewer.synchronizedViewing.isSelected());
             save(BytecodeViewer.viewer.showClassMethods.isSelected());
-            save(BytecodeViewer.viewer.ren.isSelected());
-            save("deprecated");
+            deprecated(2);
             
             save(Configuration.lafTheme.name());
             save(Configuration.rstaTheme.name());
@@ -193,14 +167,14 @@ public class SettingsSerializer
             save(BytecodeViewer.viewer.viewPane3.isPaneEditable());
             
             save(Configuration.javaTools);
-            save("deprecated");
-            save("deprecated");
+            deprecated(2);
             save(Configuration.lastSaveDirectory);
             save(Configuration.lastPluginDirectory);
             save(Configuration.python2Extra);
             save(Configuration.python3Extra);
             save(BytecodeViewer.viewer.getMinSdkVersion());
             save(BytecodeViewer.viewer.printLineNumbers.isSelected());
+            save(((FernFlowerDecompiler) Decompiler.FERNFLOWER_DECOMPILER.getDecompiler()).outputConfig());
         } catch (Exception e) {
             BytecodeViewer.handleException(e);
         }
@@ -244,28 +218,31 @@ public class SettingsSerializer
             return;
         
         Settings.firstBoot = false;
+
+        Map<String, Boolean> oldFernflowerSettings = new HashMap<>();
         
         try
         {
             //parse the cached file from memory (from preload)
-            BytecodeViewer.viewer.rbr.setSelected(asBoolean(1));
-            BytecodeViewer.viewer.rsy.setSelected(asBoolean(2));
-            BytecodeViewer.viewer.din.setSelected(asBoolean(3));
-            BytecodeViewer.viewer.dc4.setSelected(asBoolean(4));
-            BytecodeViewer.viewer.das.setSelected(asBoolean(5));
-            BytecodeViewer.viewer.hes.setSelected(asBoolean(6));
-            BytecodeViewer.viewer.hdc.setSelected(asBoolean(7));
-            BytecodeViewer.viewer.dgs.setSelected(asBoolean(8));
-            BytecodeViewer.viewer.ner.setSelected(asBoolean(9));
-            BytecodeViewer.viewer.den.setSelected(asBoolean(10));
-            BytecodeViewer.viewer.rgn.setSelected(asBoolean(11));
-            BytecodeViewer.viewer.bto.setSelected(asBoolean(12));
-            BytecodeViewer.viewer.nns.setSelected(asBoolean(13));
-            BytecodeViewer.viewer.uto.setSelected(asBoolean(14));
-            BytecodeViewer.viewer.udv.setSelected(asBoolean(15));
-            BytecodeViewer.viewer.rer.setSelected(asBoolean(16));
-            BytecodeViewer.viewer.fdi.setSelected(asBoolean(17));
-            BytecodeViewer.viewer.asc.setSelected(asBoolean(18));
+            oldFernflowerSettings.put("rbr", asBooleanUnlessDeprecated(1));
+            oldFernflowerSettings.put("rsy", asBooleanUnlessDeprecated(2));
+            oldFernflowerSettings.put("din", asBooleanUnlessDeprecated(3));
+            oldFernflowerSettings.put("dc4", asBooleanUnlessDeprecated(4));
+            oldFernflowerSettings.put("das", asBooleanUnlessDeprecated(5));
+            oldFernflowerSettings.put("hes", asBooleanUnlessDeprecated(6));
+            oldFernflowerSettings.put("hdc", asBooleanUnlessDeprecated(7));
+            oldFernflowerSettings.put("dgs", asBooleanUnlessDeprecated(8));
+            oldFernflowerSettings.put("ner", asBooleanUnlessDeprecated(9));
+            oldFernflowerSettings.put("den", asBooleanUnlessDeprecated(10));
+            oldFernflowerSettings.put("rgn", asBooleanUnlessDeprecated(11));
+            oldFernflowerSettings.put("bto", asBooleanUnlessDeprecated(12));
+            oldFernflowerSettings.put("nns", asBooleanUnlessDeprecated(13));
+            oldFernflowerSettings.put("uto", asBooleanUnlessDeprecated(14));
+            oldFernflowerSettings.put("udv", asBooleanUnlessDeprecated(15));
+            oldFernflowerSettings.put("rer", asBooleanUnlessDeprecated(16));
+            oldFernflowerSettings.put("fdi", asBooleanUnlessDeprecated(17));
+            oldFernflowerSettings.put("asc", asBooleanUnlessDeprecated(18));
+
             BytecodeViewer.viewer.decodeEnumSwitch.setSelected(asBoolean(19));
             BytecodeViewer.viewer.sugarEnums.setSelected(asBoolean(20));
             BytecodeViewer.viewer.decodeStringSwitch.setSelected(asBoolean(21));
@@ -374,7 +351,7 @@ public class SettingsSerializer
             BytecodeViewer.viewer.forcePureAsciiAsText.setSelected(asBoolean(122));
             BytecodeViewer.viewer.synchronizedViewing.setSelected(asBoolean(123));
             BytecodeViewer.viewer.showClassMethods.setSelected(asBoolean(124));
-            BytecodeViewer.viewer.ren.setSelected(asBoolean(125));
+            oldFernflowerSettings.put("ren", asBooleanUnlessDeprecated(125));
             //line 126 is deprecated
             //line 127 is used for theme on preload
             //line 128 is used for theme on preload
@@ -399,6 +376,10 @@ public class SettingsSerializer
             Configuration.python3Extra = asBoolean(140);
             BytecodeViewer.viewer.minSdkVersionSpinner.setValue(asInt(141));
             BytecodeViewer.viewer.printLineNumbers.setSelected(asBoolean(142));
+
+            FernFlowerDecompiler qf = (FernFlowerDecompiler) Decompiler.FERNFLOWER_DECOMPILER.getDecompiler();
+            qf.inputOldConfig(oldFernflowerSettings);
+            qf.inputConfig(asString(143));
         }
         catch (IndexOutOfBoundsException e)
         {
@@ -428,5 +409,10 @@ public class SettingsSerializer
     public static int asInt(int lineNumber) throws Exception
     {
         return Integer.parseInt(DiskReader.loadString(settingsName, lineNumber, false));
+    }
+
+    public static Boolean asBooleanUnlessDeprecated(int lineNumber) throws Exception
+    {
+        return asString(lineNumber).equals("deprecated") ? null : asBoolean(lineNumber);
     }
 }

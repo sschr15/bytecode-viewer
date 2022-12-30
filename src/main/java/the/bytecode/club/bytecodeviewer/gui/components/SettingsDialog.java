@@ -1,6 +1,6 @@
 package the.bytecode.club.bytecodeviewer.gui.components;
 
-import java.awt.Component;
+import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.BoxLayout;
@@ -40,7 +40,7 @@ public class SettingsDialog extends JScrollPane
 {
 	public static final List<JComponent> components = new ArrayList<>();
 	public static final List<JDialog> dialogs = new ArrayList<>();
-	private final List<JMenuItem> options = new ArrayList<>();
+	private final List<JComponent> options = new ArrayList<>();
 	private final JMenu menu;
 	private final JPanel display;
 	
@@ -53,34 +53,19 @@ public class SettingsDialog extends JScrollPane
 		
 		if(!useNewSettingsDialog)
 			return;
-		
-		List<JMenuItem> options = new ArrayList<>();
+
 		for(Component child : menu.getMenuComponents())
 		{
-			if(!(child instanceof JMenuItem))
-				continue;
-			
-			JMenuItem menuItem = (JMenuItem) child;
-			
-			options.add(menuItem);
-			
-			//force unselect after a selection has been made
-			//this fixes a graphical bug from forcing menu items on non-menus
-			menuItem.addActionListener(e -> unselectAll());
+			if (child instanceof JComponent) {
+				options.add((JComponent) child);
+			}
 		}
-		
-		this.options.addAll(options);
 		
 		buildPanel();
 		
 		components.add(this);
 	}
-	
-	public void unselectAll()
-	{
-		options.forEach(jMenuItem -> jMenuItem.setArmed(false));
-	}
-	
+
 	public void showDialog()
 	{
 		ExtendedJOptionPane.showJPanelDialog(null, this, 460, dialogs::add);
@@ -89,8 +74,14 @@ public class SettingsDialog extends JScrollPane
 	private void buildPanel()
 	{
 		display.setLayout(new BoxLayout(display, BoxLayout.Y_AXIS));
-		for(JMenuItem menuItem : options)
-			display.add(menuItem);
+		display.setAlignmentX(Component.LEFT_ALIGNMENT);
+		display.setMaximumSize(new Dimension(400, Integer.MAX_VALUE));
+
+		for(JComponent component : options)
+			display.add(component);
+
+		display.setPreferredSize(new Dimension(400, display.getPreferredSize().height));
+		setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
 	}
 	
 	@Override
