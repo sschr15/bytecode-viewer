@@ -1,7 +1,7 @@
 [versions]
 # Main
 java = "11"
-bcv = "2.12.0"
+bcv = "2.12.1"
 
 # Dependencies
 annotations = "23.1.0"
