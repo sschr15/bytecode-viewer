@@ -61,10 +61,9 @@ public class ResourceContainer
      */
     public ClassNode getClassNode(String resourceName)
     {
-        //fallback incase the resource contains the file extension
-        if(resourceClassBytes.containsKey(resourceName))
-            return resourceClasses.get(FilenameUtils.removeExtension(resourceName));
-        
+        if (resourceName.endsWith(".class"))
+            resourceName = FilenameUtils.removeExtension(resourceName);
+
         //TODO check if this is even being called, it's probably not
         return resourceClasses.get(resourceName);
     }

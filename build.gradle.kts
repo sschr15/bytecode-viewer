@@ -33,6 +33,15 @@ dependencies {
         exclude(group = "com.jakewharton.android.repackaged", module = "dalvik-dx")
     }
 
+    implementation(libs.quiltflower) {
+        artifact {
+            // "fat jar" containing QF plugins
+            // this is required, otherwise gradle just downloads the slim jar which does not contain plugins
+            // also it should be `all` but that build is currently broken
+            classifier = ""
+        }
+    }
+
     implementation(libs.annotations)
     implementation(libs.apktool.cli)
     implementation(libs.cfr)
@@ -47,7 +56,6 @@ dependencies {
     implementation(libs.js)
     implementation(libs.objenesis)
     implementation(libs.paged.data)
-    implementation(libs.quiltflower)
     implementation(libs.rsyntaxtextarea)
     implementation(libs.slf4j.api)
     implementation(libs.semver)
@@ -71,8 +79,12 @@ java {
 tasks {
     jar {
         from(configurations.runtimeClasspath.get().map { if (it.isDirectory) it else zipTree(it) }) {
-            exclude("META-INF/**")
             exclude("**/module-info.class")
+            filesMatching("META-INF/**") {
+                if ("META-INF/services" !in path && "META-INF/plugins" !in path) {
+                    exclude()
+                }
+            }
         }
         from(fileTree("dir" to "libs", "include" to listOf("*.zip")))
 
