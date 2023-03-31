@@ -5,6 +5,7 @@ import me.konloch.kontainer.io.DiskReader;
 import org.jetbrains.java.decompiler.main.DecompilerContext;
 import org.jetbrains.java.decompiler.main.decompiler.BaseDecompiler;
 import org.jetbrains.java.decompiler.main.decompiler.DirectoryResultSaver;
+import org.jetbrains.java.decompiler.main.decompiler.OptionParser;
 import org.jetbrains.java.decompiler.main.decompiler.PrintStreamLogger;
 import org.jetbrains.java.decompiler.main.extern.IContextSource;
 import org.jetbrains.java.decompiler.main.extern.IFernflowerPreferences;
@@ -135,8 +136,9 @@ public class FernFlowerDecompiler extends InternalDecompiler
         for (Field f : IFernflowerPreferences.class.getFields()) {
             IFernflowerPreferences.Name name = f.getAnnotation(IFernflowerPreferences.Name.class);
             IFernflowerPreferences.Description description = f.getAnnotation(IFernflowerPreferences.Description.class);
+            IFernflowerPreferences.Type type = f.getAnnotation(IFernflowerPreferences.Type.class);
 
-            if (name == null || description == null) {
+            if (name == null || description == null || type == null) {
                 continue;
             }
 
@@ -150,37 +152,31 @@ public class FernFlowerDecompiler extends InternalDecompiler
 
             String value = (String) defaults.get(internalName);
             JComponent component;
-            if (value == null) {
-                JLabel label = new JLabel(name.value());
-                label.setHorizontalAlignment(SwingConstants.LEFT);
-                JTextField textField = new JTextField();
-                textField.setToolTipText(description.value());
-                component = textField;
-                settings.add(label);
-            } else if (value.equals("0")) {
-                JCheckBox checkBox = new JCheckBox(name.value());
-                checkBox.setToolTipText(description.value());
-                checkBox.setSelected(false);
-                component = checkBox;
-            } else if (value.equals("1")) {
-                JCheckBox checkBox = new JCheckBox(name.value());
-                checkBox.setToolTipText(description.value());
-                checkBox.setSelected(true);
-                component = checkBox;
-            } else if (value.matches("\\d+")) {
-                JLabel label = new JLabel(name.value());
-                label.setHorizontalAlignment(SwingConstants.LEFT);
-                JSpinner spinner = new JSpinner(new SpinnerNumberModel(Integer.parseInt(value), 0, Integer.MAX_VALUE, 1));
-                spinner.setToolTipText(description.value());
-                component = spinner;
-                settings.add(label);
-            } else {
-                JLabel label = new JLabel(name.value());
-                label.setHorizontalAlignment(SwingConstants.LEFT);
-                JTextField textField = new JTextField(value);
-                textField.setToolTipText(description.value());
-                component = textField;
-                settings.add(label);
+            switch (type.value()) {
+                case IFernflowerPreferences.Type.BOOLEAN:
+                    JCheckBox checkBox = new JCheckBox(name.value());
+                    checkBox.setToolTipText(description.value());
+                    checkBox.setSelected(value.equals("1"));
+                    component = checkBox;
+                    break;
+                case IFernflowerPreferences.Type.INTEGER:
+                    JLabel label = new JLabel(name.value());
+                    label.setHorizontalAlignment(SwingConstants.LEFT);
+                    JSpinner spinner = new JSpinner(new SpinnerNumberModel(Integer.parseInt(value), 0, Integer.MAX_VALUE, 1));
+                    spinner.setToolTipText(description.value());
+                    component = spinner;
+                    settings.add(label);
+                    break;
+                case IFernflowerPreferences.Type.STRING:
+                    JLabel label2 = new JLabel(name.value());
+                    label2.setHorizontalAlignment(SwingConstants.LEFT);
+                    JTextField textField = new JTextField(value);
+                    textField.setToolTipText(description.value());
+                    component = textField;
+                    settings.add(label2);
+                    break;
+                default:
+                    throw new IllegalStateException("Unexpected value: " + type.value());
             }
             component.setAlignmentX(Component.LEFT_ALIGNMENT);
             component.setMaximumSize(new Dimension(390, 25));
@@ -231,7 +227,14 @@ public class FernFlowerDecompiler extends InternalDecompiler
             if (split.length != 2) {
                 continue;
             }
-            Component component = OPTIONS.get(split[0]);
+            Component component;
+            if (split[0].length() > 3) {
+                component = OPTIONS.get(split[0]);
+            } else { // compat with old QF settings format
+                Map<String, Object> map = new HashMap<>();
+                OptionParser.parseShort("-" + option, map);
+                component = OPTIONS.get(map.keySet().iterator().next());
+            }
             if (component == null) {
                 continue;
             }
