@@ -46,7 +46,11 @@ dependencies {
     implementation(libs.apktool.cli)
     implementation(libs.cfr)
     implementation(libs.cloning)
-    implementation(libs.dex2jar)
+    implementation(libs.dex2jar) {
+        // These fail (for some reason?) so instead they're just loaded from the libs folder
+        exclude("com.github.ThexXTURBOXx.dex2jar", "d2j-base-cmd")
+        exclude("com.github.ThexXTURBOXx.dex2jar", "d2j-external")
+    }
     implementation(libs.gson)
     implementation(libs.guava)
     implementation(libs.imgscalr)
