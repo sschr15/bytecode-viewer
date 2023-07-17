@@ -4,7 +4,7 @@ java = "11"
 bcv = "2.12.2"
 
 # Dependencies
-annotations = "23.1.0"
+annotations = "24.0.0"
 antlr4 = "4.9.3"
 apktool = "2.7.0"
 asm = "9.4"
@@ -23,7 +23,7 @@ commons_text = "1.10.0"
 darklaf_core = "3.0.2"
 darklaf_extensions_rsta = "0.4.1"
 dex2jar = "v59"
-gson = "2.10"
+gson = "2.10.1"
 guava = "31.1-jre"
 imgscalr = "4.2"
 jadx = "1.4.5"
@@ -35,10 +35,10 @@ objenesis = "3.3"
 paged_data = "0.2.0"
 procyon = "0.6.0"
 quiltflower = "1.10.0-SNAPSHOT"
-rsyntaxtextarea = "3.3.0"
+rsyntaxtextarea = "3.3.2"
 semver = "2.1.1"
-slf4j = "2.0.5"
-smali = "2.5.2"
+slf4j = "2.0.6"
+smali = "403e90375e"
 snakeyaml = "1.33"
 treelayout = "1.0.3"
 webp_imageio = "0.2.2"
@@ -91,8 +91,8 @@ quiltflower = { module = "org.quiltmc:quiltflower", version.ref = "quiltflower" 
 rsyntaxtextarea = { module = "com.fifesoft:rsyntaxtextarea", version.ref = "rsyntaxtextarea" }
 slf4j_api = { module = "org.slf4j:slf4j-api", version.ref = "slf4j" }
 semver = { module = "de.skuzzle:semantic-version", version.ref = "semver" }
-smali = { module = "org.smali:smali", version.ref = "smali" }
-baksmali = { module = "org.smali:baksmali", version.ref = "smali" }
+smali = { module = "com.github.iBotPeaches.smali:smali", version.ref = "smali" }
+baksmali = { module = "com.github.iBotPeaches.smali:baksmali", version.ref = "smali" }
 snakeyaml = { module = "org.yaml:snakeyaml", version.ref = "snakeyaml" }
 treelayout = { module = "org.abego.treelayout:org.abego.treelayout.core", version.ref = "treelayout" }
 webp_imageio = { module = "com.github.gotson:webp-imageio", version.ref = "webp_imageio" }

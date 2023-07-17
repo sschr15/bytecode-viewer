@@ -18,7 +18,9 @@ dependencies {
     implementation(libs.bundles.bined)
     implementation(libs.bundles.commons)
     implementation(libs.bundles.darklaf)
-    implementation(libs.bundles.jadx)
+    implementation(libs.bundles.jadx) {
+        exclude(group = "org.smali", module = "smali")
+    }
     implementation(libs.bundles.procyon)
     implementation(libs.bundles.smali)
 
