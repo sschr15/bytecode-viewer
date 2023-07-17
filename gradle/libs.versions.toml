@@ -25,6 +25,7 @@ darklaf_extensions_rsta = "0.4.1"
 dex2jar = "v59"
 gson = "2.10.1"
 guava = "31.1-jre"
+httprequest = "2.1.0"
 imgscalr = "4.2"
 jadx = "1.4.5"
 jasm = "0.7.0"
@@ -39,7 +40,7 @@ rsyntaxtextarea = "3.3.2"
 semver = "2.1.1"
 slf4j = "2.0.6"
 smali = "403e90375e"
-snakeyaml = "1.33"
+safeyaml = "1.33.0"
 treelayout = "1.0.3"
 webp_imageio = "0.2.2"
 xpp3 = "1.1.4c"
@@ -72,6 +73,7 @@ darklaf_extensions_rsta = { module = "com.github.weisj:darklaf-extensions-rsynta
 dex2jar = { module = "com.github.ThexXTURBOXx:dex2jar", version.ref = "dex2jar" }
 gson = { module = "com.google.code.gson:gson", version.ref = "gson" }
 guava = { module = "com.google.guava:guava", version.ref = "guava" }
+httprequest = { module = "com.konloch:HTTPRequest", version.ref = "httprequest" }
 imgscalr = { module = "org.imgscalr:imgscalr-lib", version.ref = "imgscalr" }
 janino = { module = "org.codehaus.janino:janino", version.ref = "commons_compiler" }
 jadx_core = { module = "io.github.skylot:jadx-core", version.ref = "jadx" }
@@ -93,7 +95,7 @@ slf4j_api = { module = "org.slf4j:slf4j-api", version.ref = "slf4j" }
 semver = { module = "de.skuzzle:semantic-version", version.ref = "semver" }
 smali = { module = "com.github.iBotPeaches.smali:smali", version.ref = "smali" }
 baksmali = { module = "com.github.iBotPeaches.smali:baksmali", version.ref = "smali" }
-snakeyaml = { module = "org.yaml:snakeyaml", version.ref = "snakeyaml" }
+safeyaml = { module = "com.konloch:safeyaml", version.ref = "safeyaml" }
 treelayout = { module = "org.abego.treelayout:org.abego.treelayout.core", version.ref = "treelayout" }
 webp_imageio = { module = "com.github.gotson:webp-imageio", version.ref = "webp_imageio" }
 xpp3 = { module = "xpp3:xpp3", version.ref = "xpp3" }

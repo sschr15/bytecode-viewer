@@ -55,6 +55,7 @@ dependencies {
     }
     implementation(libs.gson)
     implementation(libs.guava)
+    implementation(libs.httprequest)
     implementation(libs.imgscalr)
     implementation(libs.janino)
     implementation(libs.jasm)
@@ -65,7 +66,7 @@ dependencies {
     implementation(libs.rsyntaxtextarea)
     implementation(libs.slf4j.api)
     implementation(libs.semver)
-    implementation(libs.snakeyaml)
+    implementation(libs.safeyaml)
     implementation(libs.treelayout)
     implementation(libs.webp.imageio)
     implementation(libs.xpp3)
