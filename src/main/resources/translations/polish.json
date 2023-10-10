@@ -87,7 +87,7 @@
   "FERNFLOWER_SETTINGS": "Ustawienia kwiatu paproci",
   "PROCYON": "Procyon",
   "CFR": "CFR",
-  "FERNFLOWER": "Quiltflower",
+  "FERNFLOWER": "Vineflower",
   "KRAKATAU": "Krakatau",
   "JDGUI": "JD-GUI",
   "JADX": "JADX",
@@ -121,7 +121,7 @@
 
   "PROCYON_DECOMPILER": "Dekompilator Procyon",
   "CFR_DECOMPILER": "Dekompilator CFR",
-  "FERNFLOWER_DECOMPILER": "Dekompilator Quiltflower",
+  "FERNFLOWER_DECOMPILER": "Dekompilator Vineflower",
   "JADX_DECOMPILER": "Dekompilator JADX",
   "JD_DECOMPILER": "Dekompilator JD-GUI",
   "BYTECODE_DISASSEMBLER": "Dezasembler bajtkodu",

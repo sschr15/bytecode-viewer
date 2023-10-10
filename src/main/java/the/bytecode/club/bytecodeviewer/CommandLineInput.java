@@ -95,7 +95,7 @@ public class CommandLineInput {
             if (cmd.hasOption("list")) {
                 System.out.println("Procyon");
                 System.out.println("CFR");
-                System.out.println("Quiltflower");
+                System.out.println("Vineflower");
                 System.out.println("Krakatau");
                 System.out.println("Krakatau-Bytecode");
                 System.out.println("JD-GUI");
@@ -160,7 +160,7 @@ public class CommandLineInput {
                         decompiler != null &&
                                 !decompiler.equalsIgnoreCase("procyon") &&
                                 !decompiler.equalsIgnoreCase("cfr") &&
-                                !decompiler.equalsIgnoreCase("quiltflower") &&
+                                !decompiler.equalsIgnoreCase("vineflower") &&
                                 !decompiler.equalsIgnoreCase("krakatau") &&
                                 !decompiler.equalsIgnoreCase("krakatau-bytecode") &&
                                 !decompiler.equalsIgnoreCase("jd-gui") &&
@@ -245,8 +245,8 @@ public class CommandLineInput {
                         BytecodeViewer.handleException(e);
                     }
                 }
-            } else if (decompiler.equalsIgnoreCase("quiltflower")) {
-                System.out.println("Decompiling " + input.getAbsolutePath() + " with Quiltflower");
+            } else if (decompiler.equalsIgnoreCase("vineflower")) {
+                System.out.println("Decompiling " + input.getAbsolutePath() + " with Vineflower");
                 BytecodeViewer.openFiles(new File[]{input}, false);
 
                 Thread.sleep(5 * 1000);

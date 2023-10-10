@@ -238,7 +238,7 @@ public class ResourceDecompiling
 	{
 		final JOptionPane pane = new JOptionPane("Which decompiler would you like to use?");
 		final Object[] options = new String[]{ "All", "Procyon", "CFR",
-				"Quiltflower", "Krakatau", "Cancel"}; //TODO JDGUI,JADX
+				"Vineflower", "Krakatau", "Cancel"}; //TODO JDGUI,JADX
 		
 		pane.setOptions(options);
 		final JDialog dialog = pane.createDialog(BytecodeViewer.viewer, "Bytecode Viewer - Select Decompiler");

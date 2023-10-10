@@ -53,7 +53,7 @@ public class DecompilerSelectionPane
 	private final DecompilerViewComponent CFR = new DecompilerViewComponent("CFR", JAVA, Decompiler.CFR_DECOMPILER);
 	private final DecompilerViewComponent JADX = new DecompilerViewComponent("JADX", JAVA, Decompiler.JADX_DECOMPILER);
 	private final DecompilerViewComponent JD = new DecompilerViewComponent("JD-GUI", JAVA, Decompiler.JD_DECOMPILER);
-	private final DecompilerViewComponent fern = new DecompilerViewComponent("Quiltflower", JAVA, Decompiler.FERNFLOWER_DECOMPILER);
+	private final DecompilerViewComponent fern = new DecompilerViewComponent("Vineflower", JAVA, Decompiler.FERNFLOWER_DECOMPILER);
 	private final DecompilerViewComponent krakatau = new DecompilerViewComponent( "Krakatau", JAVA_AND_BYTECODE, Decompiler.KRAKATAU_DECOMPILER, Decompiler.KRAKATAU_DISASSEMBLER);
 	private final DecompilerViewComponent smali = new DecompilerViewComponent("Smali", BYTECODE, Decompiler.SMALI_DISASSEMBLER);
 	private final DecompilerViewComponent bytecode = new DecompilerViewComponent("Bytecode", BYTECODE_NON_EDITABLE, Decompiler.BYTECODE_DISASSEMBLER);

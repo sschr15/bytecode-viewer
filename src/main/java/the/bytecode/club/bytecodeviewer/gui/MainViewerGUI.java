@@ -217,8 +217,8 @@ public class MainViewerGUI extends JFrame
     public final JCheckBoxMenuItem printLineNumbers = new TranslatedJCheckBoxMenuItem("Print Line Numbers", TranslatedComponents.PRINT_LINE_NUMBERS);
     
     //FernFlower settings
-    public final JMenu fernFlowerSettingsSecondaryMenu = new TranslatedJMenu("Quiltflower Settings", TranslatedComponents.FERNFLOWER_SETTINGS);
-    public final JMenuItem fernFlowerSettings = new TranslatedJMenuItem("Quiltflower Settings", TranslatedComponents.FERNFLOWER_SETTINGS);
+    public final JMenu fernFlowerSettingsSecondaryMenu = new TranslatedJMenu("Vineflower Settings", TranslatedComponents.FERNFLOWER_SETTINGS);
+    public final JMenuItem fernFlowerSettings = new TranslatedJMenuItem("Vineflower Settings", TranslatedComponents.FERNFLOWER_SETTINGS);
     public SettingsDialog fernFlowerSettingsDialog;
 
     //Procyon

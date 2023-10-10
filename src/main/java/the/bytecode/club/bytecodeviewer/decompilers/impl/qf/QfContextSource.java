@@ -38,7 +38,7 @@ public class QfContextSource implements IContextSource {
 
     @Override
     public String getName() {
-        return "BCV Quiltflower Context Source";
+        return "BCV Vineflower Context Source";
     }
 
     @Override
