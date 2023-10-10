@@ -9,8 +9,7 @@ repositories {
     mavenCentral()
     google()
     maven("https://jitpack.io")
-    maven("https://oss.sonatype.org/content/repositories/snapshots")
-    maven("https://maven.quiltmc.org/repository/snapshot/")
+    maven("https://s01.oss.sonatype.org/content/repositories/snapshots")
 }
 
 dependencies {
@@ -35,11 +34,10 @@ dependencies {
         exclude(group = "com.jakewharton.android.repackaged", module = "dalvik-dx")
     }
 
-    implementation(libs.quiltflower) {
+    implementation(libs.vineflower) {
         artifact {
-            // "fat jar" containing QF plugins
-            // this is required, otherwise gradle just downloads the slim jar which does not contain plugins
-            // also it should be `all` but that build is currently broken
+            // "fat jar" containing VF plugins
+            // this is required because gradle is cursed
             classifier = ""
         }
     }
@@ -48,11 +46,7 @@ dependencies {
     implementation(libs.apktool.cli)
     implementation(libs.cfr)
     implementation(libs.cloning)
-    implementation(libs.dex2jar) {
-        // These fail (for some reason?) so instead they're just loaded from the libs folder
-        exclude("com.github.ThexXTURBOXx.dex2jar", "d2j-base-cmd")
-        exclude("com.github.ThexXTURBOXx.dex2jar", "d2j-external")
-    }
+    implementation(libs.dex2jar)
     implementation(libs.gson)
     implementation(libs.guava)
     implementation(libs.httprequest)

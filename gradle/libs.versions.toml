@@ -1,7 +1,7 @@
 [versions]
 # Main
 java = "11"
-bcv = "2.12.2"
+bcv = "2.12.3"
 
 # Dependencies
 annotations = "24.0.0"
@@ -22,7 +22,7 @@ commons_lang3 = "3.12.0"
 commons_text = "1.10.0"
 darklaf_core = "3.0.2"
 darklaf_extensions_rsta = "0.4.1"
-dex2jar = "v59"
+dex2jar = "v74"
 gson = "2.10.1"
 guava = "31.1-jre"
 httprequest = "2.1.0"
@@ -35,7 +35,7 @@ js = "1.7.14"
 objenesis = "3.3"
 paged_data = "0.2.0"
 procyon = "0.6.0"
-quiltflower = "1.10.0-SNAPSHOT"
+vineflower = "1.10.0-SNAPSHOT"
 rsyntaxtextarea = "3.3.2"
 semver = "2.1.1"
 slf4j = "2.0.6"
@@ -89,7 +89,7 @@ procyon_core = { module = "org.bitbucket.mstrobel:procyon-core", version.ref = "
 procyon_compilertools = { module = "org.bitbucket.mstrobel:procyon-compilertools", version.ref = "procyon" }
 procyon_expressions = { module = "org.bitbucket.mstrobel:procyon-expressions", version.ref = "procyon" }
 procyon_reflection = { module = "org.bitbucket.mstrobel:procyon-reflection", version.ref = "procyon" }
-quiltflower = { module = "org.quiltmc:quiltflower", version.ref = "quiltflower" }
+vineflower = { module = "org.vineflower:vineflower", version.ref = "vineflower" }
 rsyntaxtextarea = { module = "com.fifesoft:rsyntaxtextarea", version.ref = "rsyntaxtextarea" }
 slf4j_api = { module = "org.slf4j:slf4j-api", version.ref = "slf4j" }
 semver = { module = "de.skuzzle:semantic-version", version.ref = "semver" }
